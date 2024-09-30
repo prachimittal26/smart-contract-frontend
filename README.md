@@ -1,70 +1,80 @@
-# ETH-AVAX INTERMEDIATE 2
+SimpleContract DApp
+This project is a decentralized application (DApp) that allows users to register, retrieve, and delete user data stored on the Ethereum blockchain. It consists of a smart contract named SimpleContract deployed using Hardhat and ethers.js.
 
-Create a simple contract with 2-3 functions. Then show the values of those functions in frontend of the application. License This contract is using the MIT License.
+Features
+Register Users: Store user information (name, email, and password) on the blockchain.
+Retrieve Users: View all registered users.
+Delete Users: Remove user information based on their email.
+Smart Contract Details
+The smart contract is written in Solidity and allows users to perform the following operations:
 
-Prerequisites Solidity ^0.8.0
+setUser: Register a user by providing a name, email, and password.
+getAllUsers: Retrieve an array of all registered users.
+deleteUser: Delete a user’s information using their email.
+Prerequisites
+Before running this project, ensure you have the following installed:
 
-Contract Details
-module2 of solidity intermediate
+Node.js: Download and install Node.js
+Hardhat: Install by running:
+bash
+Copy code
+npm install --save-dev hardhat
+Ethers.js: Included as part of Hardhat.
+Getting Started
+1. Clone the Repository
+bash
+Copy code
+git clone <repository-url>
+cd <project-directory>
+2. Install Dependencies
+bash
+Copy code
+npm install
+3. Compile the Contract
+To compile the smart contract, run:
 
-Terminal commands to deploy the contract
+bash
+Copy code
+npx hardhat compile
+4. Deploy the Contract
+The deployment script is located in the scripts folder. To deploy the contract on a local blockchain network:
 
-"npm i"
-Install the required dependencies by running npm install in your project directory.
+bash
+Copy code
+npx hardhat node
+npx hardhat run scripts/deploy.js --network localhost
+5. Interact with the Contract
+Once the contract is deployed, you can interact with it using Web3.js or ethers.js in a front-end React app. Refer to the App.js for examples of how to call the setUser, getAllUsers, and deleteUser functions.
 
-"npx hardhat compile"
-Compile your smart contract by running npx hardhat compile in your project directory. 
-This will compile your Solidity code and generate the necessary artifacts.
+Frontend DApp
+The front-end is built with React.js and allows users to:
 
-"npx hardhat node"
-Start a local Ethereum node by running npx hardhat node in your project directory. 
-This will start a local blockchain network for testing and development purposes
+Register by entering their name, email, and password.
+View all registered users.
+Delete a user based on their email.
+Running the Frontend
+Navigate to the project root and run the following command to start the React app:
 
+bash
+Copy code
+npm start
+Ensure your local blockchain is running using npx hardhat node.
 
-"npx hardhat run scripts/deploy.js --network localhost"
-Deploy your smart contract to the local network by running npx hardhat run scripts/deploy.js --network localhost in your project directory. 
-Make sure you have a deployment script (deploy.js) in the scripts directory that specifies the deployment logic.
+Open your browser and navigate to http://localhost:3000 to interact with the DApp.
 
-"npm run dev"
-Finally, start your development server by running npm run dev in your project directory. 
-This will start your application and make it accessible in your local development environment.
-
-> SimpleContract.sol
-The SimpleContract is a Solidity smart contract that allows users to register, retrieve, and delete user information. Here's a short explanation of how it works:
-1.	The contract defines a User struct with three properties: name, email, and password.
-2.	The contract uses a mapping called users to store user information. The key of the mapping is the user's email, and the value is an instance of the User struct.
-3.	The contract also maintains an array called userIds to keep track of the registered user emails.
-4.	The setUser function allows users to register by providing their name, email, and password. It creates a new User struct with the provided information and adds it to the users mapping using the email as the key. It also adds the email to the userIds array.
-5.	The getAllUsers function returns an array of all registered users. It iterates over the userIds array and retrieves the corresponding User struct from the users mapping.
-6.	The deleteUser function allows users to delete their registration by providing their email. It removes the user's information from the users mapping and updates the userIds array by swapping the email with the last element and then removing the last element.
-This contract provides basic functionality for user registration and management. 
- 
-
-> index.js
-React component that provides a user registration interface for interacting with the SimpleContract smart contract. Here's a short summary of how it works:
-1.	The component initializes the contract state variable using the contract ABI and address.
-2.	The component defines state variables for user, users, and deleteName to manage user input and retrieved user data.
-3.	The useEffect hook is used to instantiate the contract instance when the component mounts.
-4.	The component provides input fields for the user to enter their name, email, and password.
-5.	The handleSetUser function is called when the "Register User" button is clicked. It invokes the setUser function of the contract, passing the user's name, email, and password. The transaction is sent from a specific Ethereum address.
-6.	The handleGetUsers function is called when the "Get All Users" button is clicked. It retrieves all registered users using the getAllUsers function of the contract and updates the users state variable.
-7.	The handleDeleteName function is called when the "Delete User" button is clicked. It invokes the deleteUser function of the contract, passing the email of the user to be deleted. The transaction is sent from a specific Ethereum address. After deletion, the users state variable is updated by calling handleGetUsers.
-8.	The component renders the user registration form, the "Register User," "Delete User," and "Get All Users" buttons, and a list of registered users.
-This code provides a basic user registration interface that interacts with the SimpleContract smart contract.
-
->deploy.js
-deploy.js code is a script written using the Hardhat framework to compile and deploy the SimpleContract smart contract. Here's a short summary of how it works:
-1.	The script imports the ethers module from the Hardhat library.
-2.	The main function is defined as an async function.
-3.	Inside the main function, the MyContract variable is assigned the contract factory of the SimpleContract contract using ethers.getContractFactory.
-4.	The script logs a message indicating that the contract is being compiled.
-5.	The myContract variable is assigned the deployed instance of the SimpleContract contract using MyContract.deploy.
-6.	The script logs a message indicating that the contract is being deployed.
-7.	The await myContract.deployed() statement waits for the contract to be mined and deployed to the blockchain.
-8.	The script logs the deployed address of the contract using myContract.address.
-9.	The main function is called, and the script exits with a status code of 0 if successful.
-10.	If an error occurs, the error is logged, and the script exits with a status code of 1.
-The script compiles and deploys the SimpleContract smart contract using the Hardhat framework.
-
-Video walkthrough
-https://www.loom.com/share/0a5d3b04d9544f8db6fdbd61038a676a
+File Structure
+bash
+Copy code
+.
+├── contracts
+│   └── SimpleContract.sol    # Smart contract code
+├── scripts
+│   └── deploy.js             # Script to deploy the contract
+├── src
+│   └── App.js                # React frontend to interact with the contract
+├── test
+│   └── test.js               # Contract tests (optional)
+├── hardhat.config.js         # Hardhat configuration
+└── README.md                 # Project documentation
+License
+This project is licensed under the MIT License.

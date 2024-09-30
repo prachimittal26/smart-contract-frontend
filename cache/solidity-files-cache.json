@@ -1,0 +1,40 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\Prachi\\OneDrive\\Desktop\\eth-intermediate-module-2\\contracts\\SmartContract.sol": {
+      "lastModificationDate": 1727673323645,
+      "contentHash": "60315c3c218b1cace4921f81d05ce61a",
+      "sourceName": "contracts/SmartContract.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "SimpleContract"
+      ]
+    }
+  }
+}
